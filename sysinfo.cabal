@@ -11,7 +11,7 @@ license-file:        LICENSE
 author:              Sibi Prabakaran
 maintainer:          sibi@psibi.in
 copyright:           Copyright: (c) 2017 Sibi
-category:            Web
+category:            FFI, Linux, System
 build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
