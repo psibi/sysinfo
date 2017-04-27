@@ -16,19 +16,20 @@ import Foreign.C.Error
 import Foreign.Storable
 import Foreign.Marshal.Alloc
 
+-- | Data type representing system informating
 data SysInfo = SysInfo
-  { uptime :: CLong
-  , loads :: Loads
-  , totalram :: CULong
-  , freeram :: CULong
-  , sharedram :: CULong
-  , bufferram :: CULong
-  , totalswap :: CULong
-  , freeswap :: CULong
-  , procs :: CUShort
-  , totalhigh :: CULong
-  , freehigh :: CULong
-  , memUnit :: CUInt
+  { uptime :: CLong -- ^ Seconds since boot
+  , loads :: Loads -- ^ 1, 5, and 15 minute load averages 
+  , totalram :: CULong -- ^ Total usable main memory size 
+  , freeram :: CULong -- ^ Available memory size 
+  , sharedram :: CULong -- ^ Amount of shared memory 
+  , bufferram :: CULong -- ^ Memory used by buffers
+  , totalswap :: CULong -- ^ Total swap space size
+  , freeswap :: CULong -- ^ swap space still available
+  , procs :: CUShort -- ^ Number of current processes
+  , totalhigh :: CULong -- ^ Total high memory size
+  , freehigh :: CULong -- ^ Available high memory size
+  , memUnit :: CUInt -- ^ Memory unit size in bytes
   } deriving (Show, Eq, Ord)
 
 newtype Loads = Loads
@@ -86,6 +87,8 @@ instance Storable SysInfo where
 foreign import ccall safe "sysinfo" c_sysinfo ::
                Ptr SysInfo -> IO CInt
 
+-- | Function for getting system information. Internally it uses the
+-- Linux system call sysinfo to get the system statistics.
 sysInfo :: IO (Either Errno SysInfo)
 sysInfo = do
   (sptr :: Ptr SysInfo) <- malloc
