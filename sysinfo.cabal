@@ -1,7 +1,10 @@
 name:                sysinfo
 version:             0.1.0.0
--- synopsis:
--- description:
+synopsis:            Haskell Interface for getting overall system statistics
+description:         This package can be used to get system statistics like
+                     uptime, free memory, system load etc. Note that
+                     the package works *only* on Linux system with
+                     kernel version >= 2.3.23 and uses FFI calls.
 homepage:            https://github.com/psibi/sysinfo#readme
 license:             BSD3
 license-file:        LICENSE
