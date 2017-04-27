@@ -1,5 +1,7 @@
 # sysinfo
 
+[![Build Status](https://travis-ci.org/psibi/sysinfo.svg?branch=master)](https://travis-ci.org/psibi/sysinfo)
+
 Haskell interface for the `sysinfo` Linux system call. This can be used
 to get system statistics like uptime, free memory, system load etc.
 
