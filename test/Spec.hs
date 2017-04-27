@@ -1,7 +1,12 @@
+{-#LANGUAGE CPP#-}
+
 import Test.Hspec
 import Test.Hspec.Expectations.Contrib (isRight)
 import System.SysInfo
 import Foreign.C.Error
+#if __GLASGOW_HASKELL__ <= 784
+import Control.Applicative ((<$>))
+#endif
 
 instance Show Errno where
     show (Errno val) = show val
