@@ -3,7 +3,12 @@
 {-#LANGUAGE RecordWildCards#-}
 
 module System.SysInfo
-  ( sysInfo
+  ( 
+
+   -- * Usage
+   -- $usage
+
+    sysInfo
   , SysInfo(..)
   , Loads(..)
   ) where
@@ -15,6 +20,15 @@ import Foreign.Ptr
 import Foreign.C.Error
 import Foreign.Storable
 import Foreign.Marshal.Alloc
+
+-- $usage
+--
+-- @
+-- λ> import System.SysInfo
+-- λ> val <- sysInfo
+-- λ> either (\_ -> "sysinfo failed") show val
+-- "SysInfo {uptime = 121149, loads = Loads {sloads = [91200,80736,82592]}, totalram = 12286611456, freeram = 967655424, sharedram = 63033344, bufferram = 838983680, totalswap = 8261726208, freeswap = 8259276800, procs = 418, totalhigh = 0, freehigh = 0, memUnit = 1}"
+-- @
 
 -- | Data type representing system informating
 data SysInfo = SysInfo
