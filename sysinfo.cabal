@@ -21,6 +21,8 @@ library
   exposed-modules:     System.SysInfo
   build-depends:       base >= 4.7 && < 5
   default-language:    Haskell2010
+  if !os(linux)
+    cpp-options: -DNO_SYSINFO
 
 test-suite sysinfo-test
   type:                exitcode-stdio-1.0
