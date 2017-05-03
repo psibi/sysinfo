@@ -1,5 +1,5 @@
 name:                sysinfo
-version:             0.1.0.0
+version:             0.1.1
 synopsis:            Haskell Interface for getting overall system statistics
 description:         This package can be used to get system statistics like
                      uptime, free memory, system load etc. Note that
@@ -13,7 +13,7 @@ maintainer:          sibi@psibi.in
 copyright:           Copyright: (c) 2017 Sibi
 category:            FFI, Linux, System
 build-type:          Simple
-extra-source-files:  README.md
+extra-source-files:  README.md, CHANGELOG.md
 cabal-version:       >=1.10
 
 library
