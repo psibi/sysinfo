@@ -1,3 +1,4 @@
+{-#LANGUAGE CPP#-}
 {-#LANGUAGE ForeignFunctionInterface#-}
 {-#LANGUAGE ScopedTypeVariables#-}
 {-#LANGUAGE RecordWildCards#-}
@@ -13,7 +14,9 @@ module System.SysInfo
   , Loads(..)
   ) where
 
+#ifndef NO_SYSINFO
 #include <sys/sysinfo.h>
+#endif
 
 import Foreign.C
 import Foreign.Ptr
@@ -68,6 +71,7 @@ instance Storable Loads where
       (ptr' :: Ptr CULong) = castPtr ptr
       index = [0, 1, 2]
 
+#ifndef NO_SYSINFO
 instance Storable SysInfo where
   sizeOf _ = (#size struct sysinfo)
   alignment _ = (#alignment struct sysinfo)
@@ -120,3 +124,9 @@ sysInfo = do
       free sptr
       err <- getErrno
       return $ Left err
+#else
+-- | Functor for getting system information. On non-Lonux sytems always fails
+-- with @E_NODATA@.
+sysInfo :: IO (Either Errno SysInfo)
+sysInfo = return (Left eNODATA)
+#endif
