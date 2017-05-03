@@ -125,7 +125,7 @@ sysInfo = do
       err <- getErrno
       return $ Left err
 #else
--- | Functor for getting system information. On non-Lonux sytems always fails
+-- | Functor for getting system information. On non-Linux sytems always fails
 -- with @E_NODATA@.
 sysInfo :: IO (Either Errno SysInfo)
 sysInfo = return (Left eNODATA)
